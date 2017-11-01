@@ -1,23 +1,40 @@
-Dim CAT() As String
+' Define a specific type to help acquire the categories
+Type Categories
+    Category() As String
+End Type
+' Define a type to help classify the elements
+Type ElementClass
+    Element As String
+    Group As String
+End Type
+' The Code 1 Sub - you can separate in several methods, but it is not necessary
 Sub BuildCategories()
-    Dim i, j, k, n As Integer
+
+    Dim i, j, k, e, n As Integer
     Dim matrixCol, matrixCat(), pos As Integer
     Dim CAT() As Categories
-    Dim wasAdded As Boolean
-    'Worksheets("List").Cells(Rows.Count, 3).End(xlUp).Row
-    
+    Dim ELE() As ElementClass
+    Dim sepChar As String
+
+    ' Character usef to separate category names (single space or Carriage Return/Line Feed)
+    sepChar = " " 'vbCrLf
+
+    ' Set category counter in 0
     matrixCol = 0
+
+    'Counting categories defined in columns
     For j = 2 To Worksheets(1).Cells(1, Columns.Count).End(xlToLeft).Column
         matrixCol = matrixCol + 1
     Next j
 
+    ' Redimensioning CATegories array
     ReDim CAT(1 To matrixCol)
 
+    ' Get all classification in each category once
     For j = 2 To Worksheets(1).Cells(1, Columns.Count).End(xlToLeft).Column
         n = 0
         ReDim Preserve CAT(j - 1).Category(1 To 1)
         For i = 2 To Worksheets(1).Cells(Rows.Count, j).End(xlUp).Row
-            'wasAdded = False
             For k = LBound(CAT(j - 1).Category) To UBound(CAT(j - 1).Category)
                 If (CAT(j - 1).Category(k) = Worksheets(1).Cells(i, j).Value) Then
                     GoTo NEXTCHECK
@@ -29,29 +46,32 @@ Sub BuildCategories()
 NEXTCHECK:
         Next i
     Next j
-    
+
+    ' This item will be used later
+    ReDim ELE(1 To i - 2)
+
+    ' Count how many groups will be build
     n = 1
     For i = LBound(CAT) To UBound(CAT)
         n = n * UBound(CAT(i).Category)
     Next i
-    MsgBox ("Building " + Format(n, "##") + " groups"), vbOKOnly, "### Your Box 1 Title ###"
-    
+    MsgBox ("It will build " + Format(n, "##") + " groups"), vbOKOnly, "Starting build groups"
+
+    ' Start groups build process
     ReDim matrixCat(1 To UBound(CAT))
     For j = LBound(CAT) To UBound(CAT)
         matrixCat(j) = LBound(CAT(j).Category)
     Next j
-    
     pos = UBound(matrixCat)
     For g = 1 To n
         Worksheets(2).Cells(g, 1).Value = "Group " + Format(g, "##")
         For j = LBound(matrixCat) To UBound(matrixCat)
             If j <> UBound(matrixCat) Then
-                Worksheets(2).Cells(g, 2).Value = Worksheets(2).Cells(g, 2).Value + CAT(j).Category(matrixCat(j)) + " " 'vbCrLf
+                Worksheets(2).Cells(g, 2).Value = Worksheets(2).Cells(g, 2).Value + CAT(j).Category(matrixCat(j)) + sepChar
             Else
                 Worksheets(2).Cells(g, 2).Value = Worksheets(2).Cells(g, 2).Value + CAT(j).Category(matrixCat(j))
             End If
         Next j
-        
         For i = UBound(matrixCat) To pos Step -1
             If (matrixCat(i) < UBound(CAT(i).Category)) Then
                 matrixCat(i) = matrixCat(i) + 1
@@ -67,5 +87,30 @@ NEXTCHECK:
         Next i
 NEXTGROUP:
     Next g
-    MsgBox (Format(g - 1, "##") + " groups"), vbOKOnly, "### Your Box 2 Title ###"        
+
+    ' Just for fun!
+    MsgBox (Format(g - 1, "##") + " groups"), vbOKOnly, "Built groups"
+
+    ' Put all elements in your respective group
+    For i = 2 To Worksheets(1).Cells(Rows.Count, 1).End(xlUp).Row
+        ELE(i - 1).Element = Worksheets(1).Cells(i, 1).Value
+        For j = 2 To Worksheets(1).Cells(i, Columns.Count).End(xlToLeft).Column
+            If j <> Worksheets(1).Cells(i, Columns.Count).End(xlToLeft).Column Then
+                ELE(i - 1).Group = ELE(i - 1).Group + Worksheets(1).Cells(i, j).Value + sepChar
+            Else
+                ELE(i - 1).Group = ELE(i - 1).Group + Worksheets(1).Cells(i, j).Value
+            End If
+        Next j
+    Next i
+    
+    For e = LBound(ELE) To UBound(ELE)
+        For i = 1 To Worksheets(2).Cells(Rows.Count, 2).End(xlUp).Row
+            If (ELE(e).Group = Worksheets(2).Cells(i, 2)) Then
+                
+            End If
+        Next i
+    Next e
+        
+    
+    
 End Sub
