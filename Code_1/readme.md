@@ -24,7 +24,7 @@ A set of (N x M x ... x K) groups, built from combination of the categories
 
 _Sheet 2_
 
-| A       | B            | C         | D         | E   |           |
+| A       | B            | C         | D         | E   | F         |
 |  :---:  |     :---:    |   :---:   |   :---:   |:---:|   :---:   |
 | Group 1 | A1 B1 ... X1 | Element 1 | Element l | ... |           |
 | Group 2 | A1 B1 ... X3 | Element j |           | ... |           |
