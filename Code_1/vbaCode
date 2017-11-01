@@ -2,15 +2,12 @@
 Type Categories
     Category() As String
 End Type
-
 ' Define a type to help classify the elements
 Type ElementClass
     Element As String
     Group As String
 End Type
-
-
-'------------------ The Code 1 Sub ------------------
+' The Code 1 Sub - you can separate in several methods, but it is not necessary
 Sub BuildCategories()
 
     Dim i, j, k, e, n As Integer
@@ -20,7 +17,8 @@ Sub BuildCategories()
     Dim sepChar As String
 
     ' Character usef to separate category names (single space or Carriage Return/Line Feed)
-    sepChar = " " 'vbCrLf
+    'sepChar = " "
+    sepChar = vbCrLf
 
     ' Set category counter in 0
     matrixCol = 0
@@ -83,7 +81,9 @@ NEXTCHECK:
                 matrixCat(i) = LBound(CAT(i).Category)
                 pos = pos - 1
                 If (pos = 0) Then GoTo NEXTGROUP
-                matrixCat(pos) = matrixCat(pos) + 1
+                If (matrixCat(pos) < UBound(CAT(pos).Category)) Then
+                    matrixCat(pos) = matrixCat(pos) + 1
+                End If
             Else
                 matrixCat(i) = LBound(CAT(i).Category)
             End If
