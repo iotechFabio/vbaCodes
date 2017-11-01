@@ -1,9 +1,10 @@
 ## Code 1
 ### What it solves
-Generate combinations using 'n' categories each one with A(n) amount of items
+Generate a list of all possible combinations using 'n' columns, each one with 'm' items.
+
 ### How must be the data
 The categories must be in columns, where each row will be the items. It is not necessary any kind of sort or special arrangement.
-Usually, this kind of data is associated with elements which can be classified in differents categories, and once into a category, it can be classified on different ways
+Usually, this kind of data is associated with elements which can be classified in differents categories, and once into a category, it can be classified on different ways.
 
 ### Exemple
 _Sheet 1_
