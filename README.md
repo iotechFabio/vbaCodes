@@ -13,7 +13,7 @@ Usually, this kind of data is associated with elements which can be classified i
 _Sheet 1_
 
 | Elements  | Category C1 | Category C2 | ... | Category Cm |
--------------------------------------------------------------
+|-----------|-------------|-------------|-----|-------------|
 | Element 1 |      A1     |      B1     | ... |      X1     |
 | Element 2 |      A2     |      B1     | ... |      X3     |
 | Element 3 |      A2     |      B3     | ... |      X7     |
