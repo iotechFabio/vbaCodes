@@ -20,5 +20,21 @@ _Sheet 1_
 | Element n |      An     |      Bm     | ... |      Xk     |
 
 ### Result
-_Sheet 2_
 A set of (N x M x ... x K) groups, built from combination of the categories
+
+_Sheet 2_
+
+| A       | B            | C         | D         | E   |           |
+|  :---:  |     :---:    |   :---:   |   :---:   |:---:|   :---:   |
+| Group 1 | A1 B1 ... X1 | Element 1 | Element l | ... |           |
+| Group 2 | A1 B1 ... X3 | Element j |           | ... |           |
+| Group 3 | A2 B1 ... X7 | Element k | Element m | ... | Element o |
+|    .    |       .      |     .     |     .     | ... |     .     |
+|    .    |       .      |     .     |     .     | ... |     .     |
+| Group X | A2 B1 ... X3 | Element 2 | Element n | ... |           |
+|    .    |       .      |     .     |     .     | ... |     .     |
+|    .    |       .      |     .     |     .     | ... |     .     |
+| Group Y | A2 B3 ... X7 | Element 3 | Element p | ... | Element q |
+|    .    |       .      |     .     |     .     | ... |     .     |
+|    .    |       .      |     .     |     .     | ... |     .     |
+| Group Z | Ax By ... Xz |           |           |     |           |
