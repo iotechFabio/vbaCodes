@@ -2,12 +2,15 @@
 Type Categories
     Category() As String
 End Type
+
 ' Define a type to help classify the elements
 Type ElementClass
     Element As String
     Group As String
 End Type
-' The Code 1 Sub - you can separate in several methods, but it is not necessary
+
+
+'------------------ The Code 1 Sub ------------------
 Sub BuildCategories()
 
     Dim i, j, k, e, n As Integer
@@ -112,7 +115,8 @@ NEXTGROUP:
                         Worksheets(2).Cells(i, j) = ELE(e).Element
                         GoTo NEXTELEMENT
                     End If
-                    j = j + 3
+                    j = j + 1
+                Wend
             End If
         Next i
 NEXTELEMENT:
