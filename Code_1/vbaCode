@@ -106,11 +106,15 @@ NEXTGROUP:
     For e = LBound(ELE) To UBound(ELE)
         For i = 1 To Worksheets(2).Cells(Rows.Count, 2).End(xlUp).Row
             If (ELE(e).Group = Worksheets(2).Cells(i, 2)) Then
-                
+                j = 3
+                While (True)
+                    If (Worksheets(2).Cells(i, j) = "") Then
+                        Worksheets(2).Cells(i, j) = ELE(e).Element
+                        GoTo NEXTELEMENT
+                    End If
+                    j = j + 3
             End If
         Next i
+NEXTELEMENT:
     Next e
-        
-    
-    
 End Sub
